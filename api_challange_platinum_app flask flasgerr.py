@@ -11,9 +11,9 @@ from flasgger import swag_from
 app.json_encoder = LazyJSONEncoder
 swagger_template = dict(
     info = {
-        'title': LazyString(lambda: 'API Documentation for Data Processing and Modeling Binar Challenge 1'),
+        'title': LazyString(lambda: 'API Documentation for Data Processing and Modeling Binar Challenge 1 platinum'),
         'version': LazyString(lambda: '1.0.0'),
-        'description': LazyString(lambda: 'Dokumentasi API untuk Data Processing dan Modeling Binar Challenge 1')
+        'description': LazyString(lambda: 'Dokumentasi API untuk Data Processing dan Modeling Binar Challenge 1 platinum')
     },
     host = LazyString(lambda: request.host)
 )
