@@ -55,32 +55,22 @@ def text():
     response_data = jsonify(json_response)
     return response_data
 
-@swag_from("docs/text_clean.yml", methods=['GET'])
-@app.route('/text-clean', methods=['GET'])
-def text_clean():
-    json_response = {
-        'status_code': 200,
-        'description': "Original Teks",
-        'data': re.sub(r'[^a-zA-Z0-9]', ' ', "Halo, apa kabar semua?")
-    }
-
-    response_data = jsonify(json_response)
-    return response_data
-
 @swag_from("docs/text_processing.yml", methods=['POST'])
-@app.route('/text-processing', methods=['POST'])
+@app.route("/text/", methods=['POST'])
 def text_processing():
-
     text = request.form.get('text')
-
-    json_response = {
-        'status_code': 200,
-        'description': "Original Teks",
-        'data': re.sub(r'[^a-zA-Z0-9]', ' ', text)
-    }
-
-    response_data = jsonify(json_response)
+    text_clean= cleansing.data_prepocessing(text)
+    response_data = jsonify(text_clean)
     return response_data
+
+@swag_from("docs/file_processing.yml", methods=['POST'])
+@app.route("/file/", methods=['POST'])
+def file_processing():
+    file = request.files['file']
+    df = pd.read_csv(file, encoding=('ISO-8859-1'))
+    cleansing.data_prepocessing(df)
+    return jsonify(df)
+
 
 if __name__ == '__main__':
     app.run()
