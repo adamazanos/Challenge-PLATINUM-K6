@@ -1,0 +1,16 @@
+tags:
+  - name: Sentiment Analysis using Neural Network (File Upload)
+get:
+  description: File yang akan diproses
+parameters:
+  - name: file
+    in: formData
+    required: true
+    type: file
+responses:
+    '200':
+      description: Successful Response
+    '400':
+      description: Bad Request
+    '500':
+      description: Internal Server Error
